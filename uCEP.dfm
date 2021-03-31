@@ -1,4 +1,4 @@
-object FrmClient: TFrmClient
+object FrmCliente: TFrmCliente
   Left = 0
   Top = 0
   Caption = 'Cadastro de Clientes'

@@ -9,7 +9,7 @@ uses
   Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.ExtCtrls, System.UITypes;
 
 type
-  TFrmClient = class(TForm)
+  TFrmCliente = class(TForm)
     CdsClient: TClientDataSet;
     CdsClientNmClient: TStringField;
     DtsClient: TDataSource;
@@ -61,7 +61,7 @@ type
   end;
 
 var
-  FrmClient: TFrmClient;
+  FrmCliente: TFrmCliente;
 
 implementation
 
@@ -69,17 +69,17 @@ uses Json, XmlDoc, XMLIntf, Email;
 
 {$R *.dfm}
 
-procedure TFrmClient.FormCreate(Sender: TObject);
+procedure TFrmCliente.FormCreate(Sender: TObject);
 begin
      CdsClient.CreateDataSet;
 end;
 
-procedure TFrmClient.CdsClientAfterInsert(DataSet: TDataSet);
+procedure TFrmCliente.CdsClientAfterInsert(DataSet: TDataSet);
 begin
       CdsClient.FieldByName('NmPais').AsString := 'Brasil';
 end;
 
-procedure TFrmClient.CdsClientAfterPost(DataSet: TDataSet);
+procedure TFrmCliente.CdsClientAfterPost(DataSet: TDataSet);
 var lNmArquiv : String;
     lEmail    : TEmail;
     lNmUsuari : String;
@@ -100,7 +100,7 @@ begin
       end;
 end;
 
-procedure TFrmClient.CdsClientBeforePost(DataSet: TDataSet);
+procedure TFrmCliente.CdsClientBeforePost(DataSet: TDataSet);
 begin
 
       if CdsClient.FieldByName('NmClient').AsString = '' then
@@ -160,7 +160,7 @@ begin
 
 end;
 
-procedure TFrmClient.DBEdit6Exit(Sender: TObject);
+procedure TFrmCliente.DBEdit6Exit(Sender: TObject);
 begin
       if CdsClient.State in [dsInsert, dsEdit] then
       begin
@@ -168,7 +168,7 @@ begin
       end;
 end;
 
-procedure TFrmClient.CarregarDadosCep;
+procedure TFrmCliente.CarregarDadosCep;
 var lTxJSon : String;
     lDsUrl  : String;
     lArJSon : TJSONArray;
@@ -219,7 +219,7 @@ begin
      end;
 end;
 
-function TFrmClient.CriarXmlRegistro : String;
+function TFrmCliente.CriarXmlRegistro : String;
 var lXmlDocto : IXMLDocument;
     lNdElemen : IXMLNode;
 begin
